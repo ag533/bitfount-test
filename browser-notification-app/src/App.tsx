@@ -44,7 +44,6 @@ const App: React.FC = () => {
   }, [reminders]);
 
   useEffect(() => {
-    console.log(Notification.permission);
     if (Notification.permission !== 'granted') {
       Notification.requestPermission();
     }

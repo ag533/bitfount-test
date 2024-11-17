@@ -74,7 +74,6 @@ const authenticate = (req: Request, res: Response, next: NextFunction): void => 
 };
 
 app.get('/api/reminders', authenticate, async (req: Request, res: Response) => {
-  console.log(req.user);
   const reminders = await ReminderModel.find({ userId: req.user.userId });
   res.json(reminders);
 });
@@ -82,7 +81,6 @@ app.get('/api/reminders', authenticate, async (req: Request, res: Response) => {
 app.post('/api/reminders', authenticate, async (req: Request, res: Response) => {
   const newReminder = new ReminderModel({ ...req.body, userId: req.user.userId });
   await newReminder.save();
-  console.log(newReminder);
   res.status(201).json(newReminder);
 });
 
